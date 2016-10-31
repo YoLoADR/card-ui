@@ -1,0 +1,172 @@
+$duration: 0.3s;
+$color: #EF5A31;
+/*Astuce qui permet d'éviter l'ajout automatique de valeur sur les paddings*/
+* { box-sizing: border-box; }
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	line-height: 1.4;
+	/*Optionnel : Couleur de fond pour l'exemple*/
+	background-color: #d8e0e5;
+}
+
+.card{
+	/*Optionnel : Pour que ça soit centré*/
+	position: absolute;
+	overflow: hidden;
+	top: 50%;
+	left: 50%;
+	width: 370px;
+	/* Fin optionnel :Pour que ça soit parfaitement centré*/
+	transform: translateX(-50%) translateY(-50%);
+	background-color: #fff;
+	/* Pour faire ressortir la carte*/
+	box-shadow: 0px 0px 20px rgba(0,0,0, 0.3);
+	/* On prescise une transistion sur le box shadow de 0,3 seconde (Première variable Youhouuuuu !!!*/
+	transition: box-shadow $duration;
+	/*Par défault tous les liens sont colorés par les navigateur*/
+	a{
+		/*On demande une couleur hérité, donc la couleur du parent*/
+		color: inherit;
+		/*On demande aucun soulignement*/
+		text-decoration: none;
+	}
+}
+
+.card:hover{
+		box-shadow: 0px 0px 50px rgba(0,0,0, 0.3);
+}
+
+.card__date{
+	/* Absolute : Se positionne à la position spécifiée relative par rapport son plus proche ancêtre positionné ou au bloc contenant initial. Les boîtes positionnées de façon absolue peuvent avoir des marges, ces marges ne fusionnent pas avec les autres marges.*/
+	position: absolute;
+	/*c'est à 20 pixels du haut et de la droite*/
+	top: 20px;
+	right: 20px;
+	width: 45px;
+	height: 45px;
+	padding-top: 10px;
+	background-color: $color;
+	border-radius: 50%;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	/* Interligne*/
+	line-height: 13px;
+
+	/* &  égale prefixe du parent = "" */
+	&__day{
+	/*Pour qu'elle s'empile l'une sur l'autre*/
+	display: block;
+	font-size: 14px;
+	}
+
+	&__month{
+		/*Pour qu'elle s'empile l'une sur l'autre*/
+		display: block;
+		font-size: 10px;
+		text-transform: uppercase;
+	}
+
+}
+
+.card__miniature{
+	height: 235px;
+	overflow: hidden;
+	background-color: #000;
+	transition : height $duration, transform $duration;
+	/*Zoom*/
+	transform: scale(1);
+	img{ 
+		display: block;
+		opacity: 1;
+		transition: opacity $duration;
+		transition: transform $duration;
+	}
+	.card:hover & img{
+		opacity: 0.6;
+		/*Effet de zoom*/
+		transform: scale(1.3);
+	}
+
+	.card:hover &{
+		height: 90px;
+	}
+	
+}
+
+.card__body{
+	/*Quand l'élément est décalé par rapport a son block on le met en position relative */
+	position: relative;
+	padding: 20px;
+	/*Il a fait des calculs pour que le body s'adapte*/
+	height: 185px;
+	transition: height $duration;
+	.card:hover &{
+		height: 185px + 145px;
+	}
+}
+
+.card__category{
+	position: absolute;
+	left: 0px;
+	top: -25px;
+	height: 25px;
+	padding: 0 15px;
+	background-color: $color;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 11px;
+	/*Astuce : mettre une hauteur de ligne à la hauteur de l'élément permet de le centrer*/
+	line-height: 25px;
+	text-transform: uppercase;
+}
+
+.card__title{
+	/*Pour éviter les modifications par défault du navigateur*/
+	margin: 0;
+	padding: 0 0 10px 0;
+	font-size: 22px;
+	color: #000;
+	font-weight: bold;
+}
+
+.card__subTitle{
+	/*Pour éviter les modifications par défault du navigateur*/
+	margin: 0;
+	padding: 0 0 10px 0;
+	color: $color;
+	font-size: 19px;
+}
+
+.card__description{
+	color: #666C74;
+	font-size: 14px;
+	line-height: 27px;
+	opacity: 0;
+	transition: opacity $duration;
+	.card:hover &{
+		opacity:1;
+	};
+}
+
+.card__footer{
+	/*En position absolute pour qu'il ne soit pas influencer par les autres éléments*/
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+	color: #A3A9AB;
+	font-size: 11px;
+
+	.glyphicon-envelope{
+		margin-left: 10px;
+	}
+}
+
+.glyphicon{
+	margin-right: 2px;
+}
+
+
